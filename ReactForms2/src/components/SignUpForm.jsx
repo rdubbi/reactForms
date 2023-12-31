@@ -1,16 +1,29 @@
-import { useState } from "React";
+import { useState } from "react";
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
+  const setToken = props.setToken;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-    //    you are around step 13
-        const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup");
-        const x = await response.json();
-        console.log("")
+      const response = await fetch(
+        "https://fsa-jwt-practice.herokuapp.com/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setToken(result.token);
     } catch (error) {
       setError(error.message);
     }
