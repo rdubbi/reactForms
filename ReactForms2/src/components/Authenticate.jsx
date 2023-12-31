@@ -18,7 +18,6 @@ export default function Authenticate(props) {
         }
       );
       const result = await response.json();
-      //   console.log(result);
       setSuccess(result.message);
       setUserMessage(result.data.username);
     } catch (error) {
