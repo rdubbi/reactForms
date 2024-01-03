@@ -21,7 +21,10 @@ export default function Authenticate(props) {
       setSuccess(result.message);
       setUserMessage(result.data.username);
     } catch (error) {
-      setError(error.message);
+      setError(
+        "Incorrectly Authenticated. We are sorry, your token could not be authenticated. This is most liekly due to a missing or invalid username/password. Please refresh the page and try again ensuring that you complete both fields and click SUBMIT below before trying to authenticate your token again."
+      );
+      console.log(error.message);
     }
   }
   return (
@@ -31,7 +34,6 @@ export default function Authenticate(props) {
       {error && <p>{error}</p>}
       <button onClick={handleClick}>Authenticate Token!</button>
       {userMessage && <p>Username is: {userMessage}</p>}
-      {/* {setSuccess && <p>{setSuccess}</p>} */}
     </div>
   );
 }

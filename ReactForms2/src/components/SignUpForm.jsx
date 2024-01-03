@@ -38,15 +38,20 @@ export default function SignUpForm(props) {
         <label>
           Username:{" "}
           <input
+            type={"text"}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            minLength={8}
+            required
           />
         </label>
         <label>
           Password:{" "}
           <input
+            type={"password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </label>
         <button>Submit</button>
